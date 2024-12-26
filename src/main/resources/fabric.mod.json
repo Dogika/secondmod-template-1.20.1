@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "secondmod",
+	"version": "${version}",
+	"name": "SecondMod",
+	"description": "This is my second attempt at a mod.",
+	"authors": [
+		"Dogika."
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/secondmod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.dogika.secondmod.SecondMod"
+		],
+		"client": [
+			"net.dogika.secondmod.SecondModClient"
+		],
+		"fabric-datagen": [
+			"net.dogika.secondmod.SecondModDataGenerator"
+		]
+	},
+	"mixins": [
+		"secondmod.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.9",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
