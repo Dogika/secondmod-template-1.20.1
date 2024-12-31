@@ -15,8 +15,6 @@ public class SecondMod implements ModInitializer {
 	public static final ScreenHandlerType<EvokerScreenHandler> EVOKER_SCREEN_HANDLER;
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Hello Fabric world!");
 		ModItems.registerModItems();
-		ModEffects.registerEffects();
 	}
 }

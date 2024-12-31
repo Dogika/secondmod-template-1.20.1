@@ -1,7 +1,5 @@
 package net.dogika.secondmod.enchant;
 
-PushEnchantPushEnchantpackage io.github.Dogika.content_changes.enchant;
-
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
