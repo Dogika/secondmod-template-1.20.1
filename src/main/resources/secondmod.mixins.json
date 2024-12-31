@@ -3,7 +3,14 @@
 	"package": "net.dogika.secondmod.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+		"FirstCallThunderMixin",
+		"SecondCallThunderMixin"
+	],
+	"client": [
+
+	],
+	"server": [
+
 	],
 	"injectors": {
 		"defaultRequire": 1
