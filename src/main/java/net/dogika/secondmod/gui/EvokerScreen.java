@@ -9,7 +9,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.text.Text;
 
 public class EvokerScreen extends HandledScreen<EvokerScreenHandler> {
-    // A path to the gui texture. In this example we use the texture from the dispenser
 
     private static final Identifier TEXTURE = new Identifier("minecraft", "textures/gui/container/dispenser.png");
 

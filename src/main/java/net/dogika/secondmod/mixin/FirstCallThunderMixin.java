@@ -19,6 +19,6 @@ public class FirstCallThunderMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/projectile/TridentEntity;hasChanneling()Z")
     )
 	private boolean additionalConditions(boolean original) {
-		return original || EnchantmentHelper.getLevel(ModEnchants.CALL_THUNDER, this.tridentStack) > 0; //tridentStack is a private so thats a different problem for later
+		return original || EnchantmentHelper.getLevel(ModEnchants.CALL_THUNDER, this.tridentStack) > 0;
 	}
 }

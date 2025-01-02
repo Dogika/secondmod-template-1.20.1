@@ -18,6 +18,6 @@ public class SecondCallThunderMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;isThundering()Z")
     )
 	private boolean additionalConditions(boolean original) {
-		return original || EnchantmentHelper.getLevel(ModEnchants.CALL_THUNDER, this.tridentStack) > 0; //tridentStack is a private so thats a different problem for later
+		return original || EnchantmentHelper.getLevel(ModEnchants.CALL_THUNDER, this.tridentStack) > 0;
 	}
 }
