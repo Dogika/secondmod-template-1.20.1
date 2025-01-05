@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MobEntity.class)
-public class EvokerUseMixin {
+public class SecondModEvokerUseMixin {
 
     @Inject(
             method = "interactMob",

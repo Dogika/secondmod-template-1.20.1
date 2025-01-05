@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(TridentEntity.class)
-public class SecondCallThunderMixin {
+public class SecondModSecondCallThunderMixin {
 	@Shadow private ItemStack tridentStack;
 
 	@ModifyExpressionValue(

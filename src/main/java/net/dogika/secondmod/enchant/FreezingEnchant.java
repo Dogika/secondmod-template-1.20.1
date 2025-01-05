@@ -1,18 +1,12 @@
 package net.dogika.secondmod.enchant;
 
+import net.dogika.secondmod.mixin.SecondModLivingEntityAccessor;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.util.math.Vec3d;
-
-import static java.lang.Math.*;
-
-EntityAttributeModifier
+import org.jetbrains.annotations.NotNull;
 
 public class FreezingEnchant extends Enchantment {
 
@@ -29,7 +23,15 @@ public class FreezingEnchant extends Enchantment {
 	}
 	@Override
 	public void onTargetDamaged(LivingEntity user, Entity target, int level) {
-		target.setFrozenTicks(target.getFrozenTicks() + user.);
+		addFrozenTicks(target);
 		super.onTargetDamaged(user, target, level);
+	}
+
+	private void addFrozenTicks(@NotNull Entity target) {
+		int frozenTicksAdded = 5 * (int) (
+				(SecondModLivingEntityAccessor) target
+		).getLastDamageTaken();
+
+		target.setFrozenTicks(target.getFrozenTicks() + frozenTicksAdded);
 	}
 }
