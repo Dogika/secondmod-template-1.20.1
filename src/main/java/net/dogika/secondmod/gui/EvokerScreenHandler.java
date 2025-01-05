@@ -112,6 +112,8 @@ public class EvokerScreenHandler extends ScreenHandler {
                     (key, value) ->
                             EnchantedBookItem.addEnchantment(outputStack, new EnchantmentLevelEntry(this.convertEnchantment(key), value))
             );
+
+            this.result.setStack(0, outputStack);
         }
         this.sendContentUpdates();
     }
