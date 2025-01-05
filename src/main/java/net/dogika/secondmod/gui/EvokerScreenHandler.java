@@ -142,8 +142,8 @@ public class EvokerScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public ItemStack quickMove(PlayerEntity player, int slot) {
-        return null;
+    public ItemStack quickMove(PlayerEntity player, int slot) { 
+        return null; // ignore..
     }
 
     @Override
