@@ -24,11 +24,13 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.random.Random;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class EvokerScreenHandler extends ScreenHandler {
 
     private final ScreenHandlerContext context;
-    private final HashMap<Identifier, Enchantment> alternativeEnchantMap;
+    private final HashMap<Enchantment, Enchantment> alternativeEnchantMap;
     private final Random random = Random.create();
     private final Property seed = Property.create();
 
@@ -49,13 +51,13 @@ public class EvokerScreenHandler extends ScreenHandler {
         super(ModScreenHandlers.EVOKER_SCREEN_HANDLER, syncId);
         this.context = context;
 
-        this.alternativeEnchantMap = new HashMap<Identifier, Enchantment>();
+        this.alternativeEnchantMap = new HashMap<Enchantment, Enchantment>();
 
-        this.alternativeEnchantMap.put(Registries.ENCHANTMENT.getId(Enchantments.THORNS), ModEnchants.BARRIER);
-        this.alternativeEnchantMap.put(Registries.ENCHANTMENT.getId(Enchantments.CHANNELING), ModEnchants.CALL_THUNDER);
-        this.alternativeEnchantMap.put(Registries.ENCHANTMENT.getId(Enchantments.FROST_WALKER), ModEnchants.FIREWALKER);
-        this.alternativeEnchantMap.put(Registries.ENCHANTMENT.getId(Enchantments.MULTISHOT), ModEnchants.SPREADSHOT);
-        this.alternativeEnchantMap.put(Registries.ENCHANTMENT.getId(Enchantments.FIRE_ASPECT), ModEnchants.FREEZING);
+        this.alternativeEnchantMap.put(Enchantments.THORNS, ModEnchants.BARRIER);
+        this.alternativeEnchantMap.put(Enchantments.CHANNELING, ModEnchants.CALL_THUNDER);
+        this.alternativeEnchantMap.put(Enchantments.FROST_WALKER, ModEnchants.FIREWALKER);
+        this.alternativeEnchantMap.put(Enchantments.MULTISHOT, ModEnchants.SPREADSHOT);
+        this.alternativeEnchantMap.put(Enchantments.FIRE_ASPECT, ModEnchants.FREEZING);
 
         this.addSlot(new Slot(this.input, 0, 49, 19) {
             @Override
@@ -103,42 +105,24 @@ public class EvokerScreenHandler extends ScreenHandler {
         if (inputStack.isEmpty()) {
             this.result.setStack(0, ItemStack.EMPTY);
         } else {
-            NbtList nbtList = inputStack.getEnchantments();
 
-            for (int i = 0; i < nbtList.size(); i++) {
+            Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(inputStack);
 
-                NbtCompound nbtCompound = nbtList.getCompound(i);
-
-                Identifier inputEnchantment = EnchantmentHelper.getIdFromNbt(nbtCompound);
-                int level = EnchantmentHelper.getLevelFromNbt(nbtCompound);
-
-                Enchantment outputEnchantment;
-                if (inputEnchantment != null && inputEnchantment.equals(Registries.ENCHANTMENT.getId(Enchantments.SHARPNESS))) {
-
-                    float chance = random.nextFloat();
-                    if (chance < 0.1) {
-
-                        outputEnchantment = ModEnchants.BLEEDING;
-
-                    } else {
-
-                        outputEnchantment = ModEnchants.DULLNESS;
-
-                    }
-
-                } else {
-
-                    outputEnchantment = this.alternativeEnchantMap.get(inputEnchantment);
-
-                }
-
-                EnchantedBookItem.addEnchantment(outputStack, new EnchantmentLevelEntry(outputEnchantment, level));
-            }
-
-            this.result.setStack(0, outputStack);
+            enchantments.forEach(
+                    (key, value) ->
+                            EnchantedBookItem.addEnchantment(outputStack, new EnchantmentLevelEntry(this.convertEnchantment(key), value))
+            );
         }
-
         this.sendContentUpdates();
+    }
+
+    private Enchantment convertEnchantment(Enchantment key) {
+        if (key.equals(Enchantments.SHARPNESS)) {
+            float chance = random.nextFloat();
+            if (chance < 0.1) return Enchantments.SHARPNESS;
+            return ModEnchants.DULLNESS;
+        }
+        return this.alternativeEnchantMap.get(key);
     }
 
     @Override

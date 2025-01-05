@@ -22,7 +22,6 @@ public class SecondMod implements ModInitializer {
 		ModScreenHandlers.registerScreenHandlers();
 		ModItems.registerModItems();
 		ModEvents.registerModEvents();
-		ModScreens.registerScreens();
 		ModEffects.registerStatusEffects();
 		ModEnchants.registerEnchants();
 	}
