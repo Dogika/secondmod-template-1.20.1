@@ -27,7 +27,7 @@ public class EvokerScreenHandler extends ScreenHandler {
     private static final Map<Enchantment,Enchantment> alternativeEnchantMap = Map.of(
             Enchantments.THORNS,      ModEnchants.BARRIER,
             Enchantments.CHANNELING,  ModEnchants.CALL_THUNDER,
-            Enchantments.FROST_WALKER,ModEnchants.FIREWALKER,
+            Enchantments.FROST_WALKER,ModEnchants.HOT_FOOTED,
             Enchantments.MULTISHOT,   ModEnchants.SPREADSHOT,
             Enchantments.FIRE_ASPECT, ModEnchants.FREEZING
     );
