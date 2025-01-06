@@ -3,23 +3,19 @@
 	"package": "net.dogika.secondmod.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"SecondModFirstCallThunderMixin",
-		"SecondModSecondCallThunderMixin",
-		"SecondModEvokerUseMixin",
 		"SecondModLivingEntityAccessor",
-		"SecondModIllagerTeammateMixin",
-		"SecondModPlayerKilledVillagerFieldMixin",
-		"SecondModHasKilledVillagerMixin",
-		"SecondModRaidRewardsMixin",
-		"SecondModNegativeRaidEffectsMixin",
-		"SecondModResetPlayerKilledVillagerMixin",
-		"SecondModPlayerHurtIllagerMixin"
+		"enchant.SecondModCallThunderMixin",
+		"illagerinteractions.SecondModEvokerUseMixin",
+		"illagerinteractions.SecondModIllagerTeammateMixin",
+		"illagerinteractions.SecondModPlayerHurtIllagerMixin",
+		"raidinteractions.SecondModRaidMixin",
+		"villagerinteractions.SecondModHasKilledVillagerMixin",
+		"villagerinteractions.SecondModVillagerMixin",
+		"villagerinteractions.SecondModVillagersFearEffectMixin"
 	],
 	"client": [
-
 	],
 	"server": [
-
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -1,4 +1,4 @@
-package net.dogika.secondmod.mixin;
+package net.dogika.secondmod.mixin.illagerinteractions;
 
 import net.dogika.secondmod.effect.ModEffects;
 import net.minecraft.entity.Entity;

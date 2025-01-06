@@ -1,4 +1,4 @@
-package net.dogika.secondmod.mixin;
+package net.dogika.secondmod.mixin.villagerinteractions;
 
 import net.dogika.secondmod.access.SecondModHasKilledVillagerAccessor;
 import net.minecraft.entity.player.PlayerEntity;

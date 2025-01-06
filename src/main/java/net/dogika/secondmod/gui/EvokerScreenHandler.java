@@ -13,24 +13,24 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.registry.Registries;
 import net.minecraft.screen.Property;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.random.Random;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class EvokerScreenHandler extends ScreenHandler {
 
     private final ScreenHandlerContext context;
-    private final HashMap<Enchantment, Enchantment> alternativeEnchantMap;
+    private static final Map<Enchantment,Enchantment> alternativeEnchantMap = Map.of(
+            Enchantments.THORNS,      ModEnchants.BARRIER,
+            Enchantments.CHANNELING,  ModEnchants.CALL_THUNDER,
+            Enchantments.FROST_WALKER,ModEnchants.FIREWALKER,
+            Enchantments.MULTISHOT,   ModEnchants.SPREADSHOT,
+            Enchantments.FIRE_ASPECT, ModEnchants.FREEZING
+    );
     private final Random random = Random.create();
     private final Property seed = Property.create();
 
@@ -51,21 +51,13 @@ public class EvokerScreenHandler extends ScreenHandler {
         super(ModScreenHandlers.EVOKER_SCREEN_HANDLER, syncId);
         this.context = context;
 
-        this.alternativeEnchantMap = new HashMap<Enchantment, Enchantment>();
-
-        this.alternativeEnchantMap.put(Enchantments.THORNS, ModEnchants.BARRIER);
-        this.alternativeEnchantMap.put(Enchantments.CHANNELING, ModEnchants.CALL_THUNDER);
-        this.alternativeEnchantMap.put(Enchantments.FROST_WALKER, ModEnchants.FIREWALKER);
-        this.alternativeEnchantMap.put(Enchantments.MULTISHOT, ModEnchants.SPREADSHOT);
-        this.alternativeEnchantMap.put(Enchantments.FIRE_ASPECT, ModEnchants.FREEZING);
-
         this.addSlot(new Slot(this.input, 0, 49, 19) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return stack.isOf(Items.ENCHANTED_BOOK);
             }
         });
-        this.addSlot(new Slot(this.result, 2, 129, 34) {
+        this.addSlot(new Slot(this.result, 1, 129, 34) {
             @Override
             public boolean canInsert(ItemStack stack) {
                 return false;
@@ -112,6 +104,7 @@ public class EvokerScreenHandler extends ScreenHandler {
                     (key, value) ->
                             EnchantedBookItem.addEnchantment(outputStack, new EnchantmentLevelEntry(this.convertEnchantment(key), value))
             );
+            this.result.setStack(0, outputStack);
         }
         this.sendContentUpdates();
     }
@@ -122,7 +115,7 @@ public class EvokerScreenHandler extends ScreenHandler {
             if (chance < 0.1) return Enchantments.SHARPNESS;
             return ModEnchants.DULLNESS;
         }
-        return this.alternativeEnchantMap.get(key);
+        return alternativeEnchantMap.get(key);
     }
 
     @Override

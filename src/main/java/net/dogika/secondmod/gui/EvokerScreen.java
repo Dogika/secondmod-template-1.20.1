@@ -39,7 +39,4 @@ public class EvokerScreen extends HandledScreen<EvokerScreenHandler> {
         // Center the title
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
     }
-
-    public static void registerScreen() {
-    }
 }
