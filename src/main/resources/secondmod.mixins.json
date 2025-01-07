@@ -6,6 +6,8 @@
     "SecondModLivingEntityAccessor",
     "enchant.SecondModCallThunderMixin",
     "enchant.SecondModHotFootedMixin",
+    "food.SecondModItemMixin",
+    "food.SecondModItemsMixin",
     "illagerinteractions.SecondModEvokerUseMixin",
     "illagerinteractions.SecondModIllagerTeammateMixin",
     "illagerinteractions.SecondModPlayerHurtIllagerMixin",

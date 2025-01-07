@@ -26,7 +26,8 @@ public class SecondModVillagersFearEffectMixin {
 
     @ModifyReceiver(
             method = "<clinit>",
-            at = @At(value = "INVOKE", target = "Lcom/google/common/collect/ImmutableMap$Builder;build()Lcom/google/common/collect/ImmutableMap;")
+            at = @At(value = "INVOKE", target = "Lcom/google/common/collect/ImmutableMap$Builder;build()Lcom/google/common/collect/ImmutableMap;"),
+            remap = false
     )
     private static ImmutableMap.Builder<EntityType<?>, Float> addPlayerToSquaredDistancesForDangerMap(ImmutableMap.Builder<EntityType<?>, Float> instance) {
         instance.put(EntityType.PLAYER, 24.0F);
